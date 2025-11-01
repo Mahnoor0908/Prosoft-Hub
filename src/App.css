@@ -1,58 +1,60 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #F8FAFF;
-  color: #003366;
+.home-container {
+  font-family: Arial, sans-serif;
+  border-radius: 50px;
 }
 
-/* About page container */
-.about-container {
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 35px 30px;
-  background-color: #e6f0ff; /* light Prosoft blue */
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-}
-
-.about-container h1 {
-  text-align: center;
-  color: #0059B3; /* main Prosoft blue */
-  font-size: 34px;
-  margin-bottom: 35px;
-}
-
-.about-container h2 {
-  color: #003366;
-  margin-top: 25px;
-  margin-bottom: 12px;
-  font-size: 22px;
-}
-
-.about-container p {
-  line-height: 1.7;
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-.about-container ul {
-  list-style-type: disc;
-  padding-left: 22px;
-  font-size: 16px;
-}
-
-.btn-primary {
-  display: inline-block;
-  padding: 12px 25px;
-  background-color: #0077FF;
+.navbar {
+  background-color: #002b5b;
   color: white;
-  border-radius: 6px;
-  font-size: 16px;
-  text-decoration: none;
-  margin-top: 20px;
-  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  align-items: center;
 }
 
-.btn-primary:hover {
-  background-color: #0059B3;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  cursor: pointer;
+}
+
+.hero {
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding-top: 200px;
+}
+
+
+/* 🌟 Prosoft Oval Button Design */
+.prosoft-btn {
+  background: linear-gradient(90deg, #00b4d8, #0077b6); /* teal-blue blend */
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px; /* makes it oval */
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+  margin-top: 25px;
+}
+
+/* ✨ Hover effect */
+.prosoft-btn:hover {
+  background: linear-gradient(90deg, #0077b6, #023e8a); /* darker blue tone */
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 0 15px #00b4d8, 0 0 25px #0077b6; /* glowing blue light */
 }
