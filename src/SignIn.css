@@ -7,6 +7,7 @@
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+   overflow: hidden;
 }
 
 .signin-page::before {
@@ -21,20 +22,21 @@
 }
 
 .signin-container {
-  position: relative;
-  z-index: 1;
-  padding: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 .signin-box {
   background: rgba(70, 100, 130, 0.5); /* Same as signup */
   backdrop-filter: blur(10px);
   border-radius: 30px;
-  padding: 50px 60px;
+  padding: 35px 40px;
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
   width: 380px; /* Same as signup */
   max-width: 90vw;
   animation: flipIn 2.2s ease-out; /* Same flip animation */
+   max-height: 90vh;
 }
 
 @keyframes flipIn {
@@ -75,7 +77,8 @@
   background: rgba(255, 255, 255, 0.9);
   color: #333;
   outline: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; box-sizing: border-box; 
+
 }
 
 .signin-box input::placeholder {
@@ -170,4 +173,24 @@
     padding: 15px 30px;
     font-size: 1rem;
   }
+}
+/* Password wrapper ko flex banayein taake items ek line mein rahein */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ye email box jitni width lega */
+  position: relative;
+}
+
+/* Input ko batayein ke wo bachi hui saari jagah le le */
+.password-wrapper input {
+  flex: 1; /* Isse width automatically email box ke barabar ho jayegi */
+  width: 100%;
+}
+
+/* Emoji ki position set karein taake wo box ke andar ya side pe sahi dikhe */
+.emoji {
+  margin-left: 10px; /* Box se thoda door rakhne ke liye */
+  font-size: 1.5rem;
+  cursor: pointer;
 }

@@ -8,11 +8,11 @@ function SignIn() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
-    role: ''
+    password: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -27,37 +27,41 @@ function SignIn() {
     setLoading(true);
 
     try {
-      // Backend API call
       const response = await axios.post('http://localhost:5000/api/auth/login', {
-        email: formData.email,
+        email: formData.email.trim().toLowerCase(),
         password: formData.password
       });
 
-      // Check if selected role matches user's role in database
-      const userRole = response.data.user.role;
-      const selectedRole = formData.role.toLowerCase();
-      
-      // Role validation (optional - can be removed if not needed)
-      if (selectedRole === 'member' && userRole !== 'user') {
-        setError('Invalid role selected!');
-        return;
-      }
-      if ((selectedRole === 'president' || selectedRole === 'advisor') && userRole !== 'admin') {
-        setError('Invalid role selected!');
-        return;
+      const { token, user } = response.data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      alert(`Welcome ${user.name || 'User'}!`);
+
+      const role = user.role?.toLowerCase();
+      if (role === 'president') {
+        navigate('/president-dashboard');
+      } else if (role === 'advisor') {
+        navigate('/advisor-dashboard');
+      } else {
+        navigate('/dashboard');
       }
 
-      // Save token and user info in localStorage
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      localStorage.setItem('selectedRole', formData.role); // Save selected role
-
-      alert(`Welcome ${formData.role}!`);
-      navigate('/'); // Redirect to home or dashboard
-      
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed! Please check your credentials.');
-      console.error('Login Error:', err);
+      const status = err.response?.status;
+      const msg = err.response?.data?.message;
+
+      if (status === 401) {
+        setError('❌ Galat email ya password hai!');
+      } else if (status === 400) {
+        setError('⚠️ Email aur password dono zaroori hain!');
+      } else if (status === 500) {
+        setError('🔴 Server error! Thori dair baad try karein.');
+      } else if (!err.response) {
+        setError('🔌 Server se connection nahi ho raha. Backend chalu hai?');
+      } else {
+        setError(msg || '❌ Login fail! Credentials check karein.');
+      }
     } finally {
       setLoading(false);
     }
@@ -80,30 +84,44 @@ function SignIn() {
               value={formData.email}
               onChange={handleChange}
               required
+              autoComplete="email"
             />
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+            {/* ✅ Password Wrapper Fixed */}
+            <div className="password-wrapper" style={{ position: 'relative', width: '100%' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Enter Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                autoComplete="current-password"
+                style={{ width: '100%', paddingRight: '50px' }} // Padding taake text emoji ke niche na jaye
+              />
+              <span 
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '20px', // Input border se thoda andar
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  cursor: 'pointer',
+                  fontSize: '1.2rem',
+                  zIndex: 10,
+                  userSelect: 'none'
+                }}
+                title={showPassword ? 'Hide Password' : 'Show Password'}
+              >
+                {showPassword ? '🙈' : '🐵'}
+              </span>
+            </div>
 
-            <select
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              required
-            >
-              <option value="" disabled>Select Role</option>
-              <option value="President">President</option>
-              <option value="Advisor">Advisor</option>
-              <option value="Member">Member</option>
-            </select>
-
-            {error && <p style={{ color: 'red', fontSize: '14px', marginTop: '10px' }}>{error}</p>}
+            {error && (
+              <p style={{ color: '#ff4d4d', fontSize: '14px', marginTop: '5px', textAlign: 'center' }}>
+                {error}
+              </p>
+            )}
 
             <button type="submit" className="signin-btn" disabled={loading}>
               {loading ? 'Signing In...' : 'Sign In'}
@@ -111,7 +129,8 @@ function SignIn() {
           </form>
 
           <p className="signup-link">
-            Don't have an account? <span onClick={() => navigate('/signup')}>Sign Up</span>
+            Don't have an account?{' '}
+            <span onClick={() => navigate('/signup')}>Sign Up</span>
           </p>
         </div>
       </div>

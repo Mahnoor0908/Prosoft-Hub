@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import Footer from "./Footer";
 import { useNavigate } from 'react-router-dom';
 import "./App.css";
-import img1 from './assets/images/1image.jpg';
-import img2 from './assets/images/2image.jpg';
-import img3 from './assets/images/3image.jpg';
-import img4 from './assets/images/4image.jpg';
+import img1 from './assets/images/image.jpg';
+import img2 from './assets/images/1image.jpg';
+import img3 from './assets/images/2image.jpg';
+import img4 from './assets/images/3image.jpg';
 import logo from './assets/images/logo.png';
 
 const sliderImages = [img1, img2, img3, img4];
@@ -79,55 +80,53 @@ function App() {
     return () => statItems.forEach((item) => observer.unobserve(item));
   }, []);
 
-  const modules = [
-    { 
-      title: "Technicians", 
-      img: "techtitans.jpg",
-      members: [
-        { name: "Wafa Abbas", role: "Lead Developer", image: "technicians.png", social: { instagram: "#", linkedin: "#", github: "#" } },
-        { name: "Ahsan Zaman", role: "Backend Developer", image: "technicians.png", social: { instagram: "#", linkedin: "#", github: "#" } },
-        { name: "Roman Fatima", role: "Frontend Developer", image: "technicians.png", social: { instagram: "#", linkedin: "#", github: "#" } }
-      ]
-    },
-    { 
-      title: "Design Forge", 
-      img: "Designer-UI.jpg",
-      members: [
-        { name: "Muhammad Abdullah", role: "UI/UX Lead", image: "design-forge.png", social: { instagram: "#", linkedin: "#", behance: "#" } },
-        { name: "Ali Khan", role: "Graphic Designer", image: "design-forge.png", social: { instagram: "#", linkedin: "#", behance: "#" } },
-        { name: "Rejab Zahra", role: "Visual Designer", image: "design-forge.png", social: { instagram: "#", linkedin: "#", behance: "#" } }
-      ]
-    },
-    { 
-      title: "Creative Studio", 
-      img: "CreativeStudio.jpg",
-      members: [
-        { name: "Roha Ejaz", role: "Content Head", image: "creative-studio.png", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-        { name: "Asma Fatima", role: "Content Writer", image: "creative-studio.png", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-        { name: "Aden Butt", role: "Creative Designer", image: "creative-studio.png", social: { instagram: "#", linkedin: "#", twitter: "#" } }
-      ]
-    },
-    { 
-      title: "Event Architects", 
-      img: "EventArchitects.jpg",
-      members: [
-        { name: "Aqib Ali", role: "Event Manager", image: "event-architects.png", social: { instagram: "#", linkedin: "#", facebook: "#" } },
-        { name: "Muhammad Shehryar", role: "Event Coordinator", image: "event-architects.png", social: { instagram: "#", linkedin: "#", facebook: "#" } },
-        { name: "Urwa Munawar", role: "Event Planner", image: "event-architects.png", social: { instagram: "#", linkedin: "#", facebook: "#" } }
-      ]
-    },
-    { 
-      title: "Media Mavericks", 
-      img: "Media.jpg",
-      members: [
-        { name: "Abdul Rehman", role: "Social Media Lead", image: "media-mavericks.png", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-        { name: "Muhammad Zaman", role: "Content Manager", image: "media-mavericks.png", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-        { name: "Ramiz Mehmood", role: "Media Strategist", image: "media-mavericks.png", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-        { name: "Rimsha Jannat", role: "Digital Marketer", image: "media-mavericks.png", social: { instagram: "#", linkedin: "#", twitter: "#" } }
-      ]
-    },
-  ];
-
+ const modules = [
+  { 
+    title: "Technicians", 
+    img: "techtitans.jpg",
+    members: [
+      { name: "Wafa Abbas", role: "Lead Developer", image: "https://avatar.iran.liara.run/public/70", social: { instagram: "#", linkedin: "#", github: "#" } },
+      { name: "Ahsan Zaman", role: "Backend Developer", image: "https://avatar.iran.liara.run/public/32", social: { instagram: "#", linkedin: "#", github: "#" } },
+      { name: "Roman Fatima", role: "Frontend Developer", image: "https://avatar.iran.liara.run/public/65", social: { instagram: "#", linkedin: "#", github: "#" } }
+    ]
+  },
+  { 
+    title: "Design Forge", 
+    img: "Designer-UI.jpg",
+    members: [
+      { name: "Muhammad Abdullah", role: "UI/UX Lead", image: "https://avatar.iran.liara.run/public/25", social: { instagram: "#", linkedin: "#", behance: "#" } },
+      { name: "Ali Khan", role: "Graphic Designer", image: "https://avatar.iran.liara.run/public/12", social: { instagram: "#", linkedin: "#", behance: "#" } },
+      { name: "Rejab Zahra", role: "Visual Designer", image: "https://avatar.iran.liara.run/public/88", social: { instagram: "#", linkedin: "#", behance: "#" } }
+    ]
+  },
+  { 
+    title: "Creative Studio", 
+    img: "CreativeStudio.jpg",
+    members: [
+      { name: "Roha Ejaz", role: "Content Head", image: "https://avatar.iran.liara.run/public/54", social: { instagram: "#", linkedin: "#", twitter: "#" } },
+      { name: "Asma Fatima", role: "Content Writer", image: "https://avatar.iran.liara.run/public/92", social: { instagram: "#", linkedin: "#", twitter: "#" } },
+      { name: "Aden Butt", role: "Creative Designer", image: "https://avatar.iran.liara.run/public/61", social: { instagram: "#", linkedin: "#", twitter: "#" } }
+    ]
+  },
+  { 
+    title: "Event Architects", 
+    img: "EventArchitects.jpg",
+    members: [
+      { name: "Aqib Ali", role: "Event Manager", image: "https://avatar.iran.liara.run/public/15", social: { instagram: "#", linkedin: "#", facebook: "#" } },
+      { name: "Muhammad Shehryar", role: "Event Coordinator", image: "https://avatar.iran.liara.run/public/44", social: { instagram: "#", linkedin: "#", facebook: "#" } },
+      { name: "Urwa Munawar", role: "Event Planner", image: "https://avatar.iran.liara.run/public/73", social: { instagram: "#", linkedin: "#", facebook: "#" } }
+    ]
+  },
+  { 
+    title: "Media Mavericks", 
+    img: "Media.jpg",
+    members: [
+      { name: "Abdul Rehman", role: "Social Media Lead", image: "https://avatar.iran.liara.run/public/38", social: { instagram: "#", linkedin: "#", twitter: "#" } },
+      { name: "Muhammad Zaman", role: "Content Manager", image: "https://avatar.iran.liara.run/public/29", social: { instagram: "#", linkedin: "#", twitter: "#" } },
+      { name: "Rimsha Jannat", role: "Digital Marketer", image: "https://avatar.iran.liara.run/public/82", social: { instagram: "#", linkedin: "#", twitter: "#" } }
+    ]
+  },
+];
   return (
     <div className="home-container">
       {/* Navigation Bar */}
@@ -353,8 +352,11 @@ function App() {
           </div>
         </div>
       </div>
+       <Footer />
     </div>
   );
+ 
 }
+
 
 export default App;

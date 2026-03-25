@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Footer from "./Footer";
 import "./About.css";
 
 function About() {
@@ -94,6 +95,7 @@ function About() {
           <img src="/images/team-hierarchy.png" alt="Team Hierarchy" />
         </div>
       </div>
+           <Footer />
 
     </div>
   );
