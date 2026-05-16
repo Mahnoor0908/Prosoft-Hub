@@ -7,6 +7,14 @@ import img2 from './assets/images/1image.jpg';
 import img3 from './assets/images/2image.jpg';
 import img4 from './assets/images/3image.jpg';
 import logo from './assets/images/logo.png';
+import wafa from './assets/images/wafa.JPG';
+import aden from './assets/images/aden.JPG';
+import aqib from './assets/images/aqib.jpeg';
+import Avatar from './assets/images/Avatar.avif';
+import avatar2 from './assets/images/avatar2.avif';
+import avatarfemale from './assets/images/avatarfemale.avif';
+import avatarmale from './assets/images/avatarmale.jpg';
+
 
 const sliderImages = [img1, img2, img3, img4];
 
@@ -15,12 +23,40 @@ function App() {
   const [index, setIndex] = useState(0);
   const [selectedTeam, setSelectedTeam] = useState(null);
 
+  
+const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
+
   // Scroll function
   const scrollToModules = () => {
     const section = document.querySelector(".modules-section");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  // Form submission handler
+  const handleContactSubmit = (e) => {
+    e.preventDefault(); // Page refresh hone se rokne ke liye
+    
+    // Validation: Check karein ke saari fields fill hain ya nahi
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.message.trim()) {
+      setFormError("Kindly fill all fields before submitting! ⚠️");
+      return;
+    }
+
+    // Agar sab theek hai:
+    setFormError("");
+    setIsSubmitted(true);
+
+    // Form fields ko wapis khali karne ke liye (Optional)
+    setFormData({ name: "", phone: "", message: "" });
+
+    // 3 seconds baad success message ko automatic gayab karne ke liye
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 3000);
   };
 
   // Open modal
@@ -81,52 +117,63 @@ function App() {
   }, []);
 
  const modules = [
-  { 
-    title: "Technicians", 
-    img: "techtitans.jpg",
-    members: [
-      { name: "Wafa Abbas", role: "Lead Developer", image: "https://avatar.iran.liara.run/public/70", social: { instagram: "#", linkedin: "#", github: "#" } },
-      { name: "Ahsan Zaman", role: "Backend Developer", image: "https://avatar.iran.liara.run/public/32", social: { instagram: "#", linkedin: "#", github: "#" } },
-      { name: "Roman Fatima", role: "Frontend Developer", image: "https://avatar.iran.liara.run/public/65", social: { instagram: "#", linkedin: "#", github: "#" } }
-    ]
-  },
-  { 
-    title: "Design Forge", 
-    img: "Designer-UI.jpg",
-    members: [
-      { name: "Muhammad Abdullah", role: "UI/UX Lead", image: "https://avatar.iran.liara.run/public/25", social: { instagram: "#", linkedin: "#", behance: "#" } },
-      { name: "Ali Khan", role: "Graphic Designer", image: "https://avatar.iran.liara.run/public/12", social: { instagram: "#", linkedin: "#", behance: "#" } },
-      { name: "Rejab Zahra", role: "Visual Designer", image: "https://avatar.iran.liara.run/public/88", social: { instagram: "#", linkedin: "#", behance: "#" } }
-    ]
-  },
-  { 
-    title: "Creative Studio", 
-    img: "CreativeStudio.jpg",
-    members: [
-      { name: "Roha Ejaz", role: "Content Head", image: "https://avatar.iran.liara.run/public/54", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-      { name: "Asma Fatima", role: "Content Writer", image: "https://avatar.iran.liara.run/public/92", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-      { name: "Aden Butt", role: "Creative Designer", image: "https://avatar.iran.liara.run/public/61", social: { instagram: "#", linkedin: "#", twitter: "#" } }
-    ]
-  },
-  { 
-    title: "Event Architects", 
-    img: "EventArchitects.jpg",
-    members: [
-      { name: "Aqib Ali", role: "Event Manager", image: "https://avatar.iran.liara.run/public/15", social: { instagram: "#", linkedin: "#", facebook: "#" } },
-      { name: "Muhammad Shehryar", role: "Event Coordinator", image: "https://avatar.iran.liara.run/public/44", social: { instagram: "#", linkedin: "#", facebook: "#" } },
-      { name: "Urwa Munawar", role: "Event Planner", image: "https://avatar.iran.liara.run/public/73", social: { instagram: "#", linkedin: "#", facebook: "#" } }
-    ]
-  },
-  { 
-    title: "Media Mavericks", 
-    img: "Media.jpg",
-    members: [
-      { name: "Abdul Rehman", role: "Social Media Lead", image: "https://avatar.iran.liara.run/public/38", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-      { name: "Muhammad Zaman", role: "Content Manager", image: "https://avatar.iran.liara.run/public/29", social: { instagram: "#", linkedin: "#", twitter: "#" } },
-      { name: "Rimsha Jannat", role: "Digital Marketer", image: "https://avatar.iran.liara.run/public/82", social: { instagram: "#", linkedin: "#", twitter: "#" } }
-    ]
-  },
-];
+    { 
+      title: "Technicians", 
+      img: "techtitans.jpg",
+     members: [
+    { 
+      name: "Wafa Abbas", 
+      role: "Lead Developer", 
+      image: wafa,
+      social: { instagram: "#", linkedin: "#", github: "#" } 
+    },
+    { name: "Ahsan Zaman", role: "Backend Developer", 
+      image:avatarmale ,
+     social: { instagram: "#", linkedin: "#", github: "#" } },
+    { name: "Roman Fatima", 
+      role: "Frontend Developer", 
+      image: avatarfemale, 
+      social: { instagram: "#", linkedin: "#", github: "#" } }
+  ]
+    },
+    { 
+      title: "Design Forge", 
+      img: "Designer-UI.jpg",
+      members: [
+        { name: "Muhammad Abdullah", role: "UI/UX Lead", image: avatar2, social: { instagram: "#", linkedin: "#", behance: "#" } },
+        { name: "Ali Khan", role: "Graphic Designer", image: avatarmale, social: { instagram: "#", linkedin: "#", behance: "#" } },
+        { name: "Rejab Zahra", role: "Visual Designer", image: avatarfemale, social: { instagram: "#", linkedin: "#", behance: "#" } }
+      ]
+    },
+    { 
+      title: "Creative Studio", 
+      img: "CreativeStudio.jpg",
+      members: [
+        { name: "Roha Ejaz", role: "Content Head", image: Avatar, social: { instagram: "#", linkedin: "#", twitter: "#" } },
+        { name: "Asma Fatima", role: "Content Writer", image: avatarfemale, social: { instagram: "#", linkedin: "#", twitter: "#" } },
+        { name: "Aden Butt", role: "Creative Designer", image:aden, social: { instagram: "#", linkedin: "#", twitter: "#" } }
+      ]
+    },
+    { 
+      title: "Event Architects", 
+      img: "EventArchitects.jpg",
+      members: [
+        { name: "Aqib Ali", role: "Event Manager", image:aqib, social: { instagram: "#", linkedin: "#", facebook: "#" } },
+        { name: "Muhammad Shehryar", role: "Event Coordinator", image: avatar2, social: { instagram: "#", linkedin: "#", facebook: "#" } },
+        { name: "Urwa Munawar", role: "Event Planner", image: "/images/urwapic.jpeg", social: { instagram: "#", linkedin: "#", facebook: "#" } }
+      ]
+    },
+    { 
+      title: "Media Mavericks", 
+      img: "Media.jpg",
+      members: [
+        { name: "Abdul Rehman", role: "Social Media Lead", image: avatar2, social: { instagram: "#", linkedin: "#", twitter: "#" } },
+        { name: "Muhammad Zaman", role: "Content Manager", image: avatarmale, social: { instagram: "#", linkedin: "#", twitter: "#" } },
+        { name: "Rimsha Jannat", role: "Digital Marketer", image: avatarfemale, social: { instagram: "#", linkedin: "#", twitter: "#" } }
+      ]
+    },
+  ];
+
   return (
     <div className="home-container">
       {/* Navigation Bar */}
@@ -253,9 +300,13 @@ function App() {
             <div className="team-members-grid">
               {selectedTeam.members.map((member, idx) => (
                 <div className="member-card" key={idx}>
-                  <div className="member-image">
-                    <img src={`images/${member.image}`} alt={member.name} />
-                  </div>
+
+                 <div className="member-image">
+  <img 
+    src={typeof member.image === 'string' && !member.image.startsWith('http') && !member.image.startsWith('/') ? `images/${member.image}` : member.image} 
+    alt={member.name} 
+  />
+</div>
                   <h3 className="member-name">{member.name}</h3>
                   <p className="member-role">{member.role}</p>
                   <div className="member-socials">
@@ -297,7 +348,7 @@ function App() {
         </div>
       )}
 
-      {/* Contact Us Section */}
+     {/* Contact Us Section */}
       <div className="contact-section">
         <p className="contact-label">CONTACT US</p>
         <h2>Get in Touch</h2>
@@ -333,22 +384,52 @@ function App() {
 
           {/* Right Side - Contact Form */}
           <div className="contact-form">
+            {/* 👇 Success Message Overlay/Alert 👇 */}
+            {isSubmitted && (
+              <div className="success-message" style={{ color: "#2ecc71", fontWeight: "bold", marginBottom: "15px", padding: "10px", backgroundColor: "#e8f8f5", borderRadius: "5px", textAlign: "center" }}>
+                Form Submitted Successfully! 🎉
+              </div>
+            )}
+
+            {/* 👇 Error Message Alert 👇 */}
+            {formError && (
+              <div className="error-message" style={{ color: "#e74c3c", fontWeight: "bold", marginBottom: "15px", padding: "10px", backgroundColor: "#fceae9", borderRadius: "5px", textAlign: "center" }}>
+                {formError}
+              </div>
+            )}
+
             <div className="form-group">
               <label>Your name</label>
-              <input type="text" placeholder="Enter your name" />
+              <input 
+                type="text" 
+                placeholder="Enter your name" 
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
             </div>
             
             <div className="form-group">
               <label>Phone Number</label>
-              <input type="tel" placeholder="Enter your mobile number" />
+              <input 
+                type="tel" 
+                placeholder="Enter your mobile number" 
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              />
             </div>
             
             <div className="form-group">
               <label>Write your messages here</label>
-              <textarea placeholder="Enter your message" rows="5"></textarea>
+              <textarea 
+                placeholder="Enter your message" 
+                rows="5"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              ></textarea>
             </div>
             
-            <button className="submit-btn">Submit now →</button>
+            {/* Click karne par handleContactSubmit function chalega */}
+            <button className="submit-btn" onClick={handleContactSubmit}>Submit now →</button>
           </div>
         </div>
       </div>
